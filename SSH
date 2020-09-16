@@ -1,0 +1,13 @@
+SSH stands for secured shell SSH  provides a secure encrypted connection over an insecure network.
+ 
+Commands:
+
+sudo apt-get -y install openssh-server
+
+sudo systemctl enable ssh
+ 
+sudo systemctl start ssh
+ 
+sudo systemctl status ssh
+ 
+sudo ssh localhost
