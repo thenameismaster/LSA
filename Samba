@@ -1,0 +1,58 @@
+STEPS:
+
+install samba
+
+In /home/kali make  samba_shared directory
+/home/kali/samba_shared me touch a.txt b.txt c.txt
+
+cd /etc/samba
+
+ls /etc/samba
+
+cp smb.conf smb.conf_bkp (for backup)
+
+sudo nano smb.conf
+
+Delete everything inside smb.conf and then write:
+
+[Samba_Shared]
+   comment =Welcome to samba
+   path = /home/kali/samba_shared
+   browseable = yes
+   read only = yes
+
+Ctrl x and then y , Save 
+
+Download smbclient
+
+sudo systemctl start smbd
+
+sudo systemctl stop nmbd
+
+Check both their statuses
+
+whoami command
+
+sudo pdbedit -a -u $(whoami)
+
+Type your passwd
+
+sudo pdbedit -L (to check all users)
+
+sudo ufw allow from 192.168.0.0/16 (or24 my ip was 168.52.128/24) to any app Samba
+
+(this will make any connectionn possible to connect)
+
+Check for your ip too : ip a or ip addr
+
+sudo ufw reload  (will reload your firewall)
+
+You can check  by :
+
+sudo smbcllient -U <username>(mine is kali) -L  //your ip
+Try restarting your smbd and nmbd
+
+sudo systemctl restart smbd/nmbd
+
+and then check their status'
+then copy your ip addr and then paste in the run option.
